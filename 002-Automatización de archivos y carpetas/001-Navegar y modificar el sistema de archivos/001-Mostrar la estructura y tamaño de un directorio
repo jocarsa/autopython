@@ -1,0 +1,30 @@
+import os
+
+suma = 0
+
+def revisar_directorio(directorio):
+    global suma
+    try:
+        elementos = os.listdir(directorio)
+    except PermissionError:
+        print(f"⚠️ Sin permisos para leer: {directorio}")
+        return
+
+    for elemento in elementos:
+        ruta_completa = os.path.join(directorio, elemento)
+        if os.path.isdir(ruta_completa):
+            print(f"Directorio: {ruta_completa}")
+            revisar_directorio(ruta_completa)
+        else:
+            tamano = os.path.getsize(ruta_completa)
+            print(f"Archivo   : {ruta_completa} — {tamano} bytes")
+            suma = suma + tamano
+        
+
+directorio_actual = input("Introduce el directorio a revisar: ")
+revisar_directorio(directorio_actual)
+print("Tamaño total del directorio:", (suma/(1024*1024)), "MB")
+
+
+
+
