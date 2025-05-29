@@ -1,0 +1,31 @@
+import os
+import shutil
+
+def revisar_directorio(directorio):
+    try:
+        elementos = os.listdir(directorio)
+    except PermissionError:
+        print(f"⚠️ Sin permisos para leer: {directorio}")
+        return
+
+    for elemento in elementos:
+        ruta_completa = os.path.join(directorio, elemento)
+        if os.path.isdir(ruta_completa):
+            revisar_directorio(ruta_completa)
+        else:
+            extension = os.path.splitext(ruta_completa)[1].lower()
+            destino_carpeta = os.path.join("C:\\copias_seguridad", extension)
+            destino_archivo = os.path.join(destino_carpeta, elemento)
+
+            if not os.path.exists(destino_carpeta):
+                os.mkdir(destino_carpeta)
+
+            shutil.copy2(ruta_completa, destino_archivo)
+
+# Crear carpeta de copias de seguridad si no existe
+carpetacopiaseguridad = "C:\\copias_seguridad"
+if not os.path.exists(carpetacopiaseguridad):
+    os.mkdir(carpetacopiaseguridad)
+
+directorio = input("Introduce el directorio a revisar: ")
+revisar_directorio(directorio)
