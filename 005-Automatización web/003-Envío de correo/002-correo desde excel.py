@@ -5,7 +5,7 @@ from email.utils import formataddr
 
 # Configuración del remitente
 sender = "info@jocarsa.com"
-password = "Jocarsa123$"
+password = "$"
 smtp_server = "smtp.ionos.es"
 smtp_port = 465
 

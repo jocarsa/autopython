@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 
 sender = "info@jocarsa.com"
 receiver = "randymorales07@outlook.com"
-password = "Jocarsa123$"
+password = "$"
 
 # Crear un mensaje MIME adecuado
 msg = MIMEText("Este es un mensaje de prueba.")
